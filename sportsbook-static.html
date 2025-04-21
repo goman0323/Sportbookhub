@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sportsbook Tools Pro</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+  <style>
+    /* CSS Dasar */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #000000;
+      color: #f1f1f1;
+      line-height: 1.6;
+    }
+    
+    .container {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 2.5rem 1rem;
+    }
+    
+    h1 {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 700;
+      font-size: 2rem;
+      margin-top: 1.5rem;
+      margin-bottom: 0.5rem;
+      text-align: center;
+    }
+    
+    p {
+      color: #a0a0a0;
+      font-size: 1.125rem;
+      text-align: center;
+      max-width: 36rem;
+      margin: 0 auto 3rem auto;
+    }
+    
+    /* Profile Section */
+    .profile-section {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 2rem;
+    }
+    
+    .profile-kern {
+      position: relative;
+      width: 10rem;
+      height: 10rem;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 4px solid #ff0000;
+      box-shadow: 0 0 25px rgba(255, 0, 0, 0.5);
+    }
+    
+    .profile-image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    
+    /* Efek Glow */
+    .profile-kern::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      border-radius: 50%;
+      background-color: #ff0000;
+      opacity: 0.3;
+      filter: blur(10px);
+      animation: pulse 2s infinite;
+    }
+    
+    .profile-kern::after {
+      content: '';
+      position: absolute;
+      inset: -5px;
+      z-index: -2;
+      border-radius: 50%;
+      background-color: #ff0000;
+      opacity: 0.2;
+      filter: blur(15px);
+      animation: pulse 2s infinite;
+    }
+    
+    @keyframes pulse {
+      0% { opacity: 0.2; }
+      50% { opacity: 0.3; }
+      100% { opacity: 0.2; }
+    }
+    
+    /* Feature Grid */
+    .feature-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+      width: 100%;
+      max-width: 64rem;
+      margin: 0 auto;
+    }
+    
+    @media (min-width: 768px) {
+      .feature-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+    
+    /* Feature Button */
+    .feature-btn {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      background-color: #ff0000;
+      border-radius: 0.5rem;
+      padding: 1.5rem;
+      text-align: center;
+      cursor: pointer;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+      transition: all 0.3s;
+    }
+    
+    .feature-btn:hover {
+      background-color: #cc0000;
+      transform: scale(1.03);
+      box-shadow: 0 10px 15px -3px rgba(255, 0, 0, 0.4), 0 4px 6px -2px rgba(255, 0, 0, 0.2);
+    }
+    
+    .icon-container {
+      width: 4rem;
+      height: 4rem;
+      background-color: rgba(0, 0, 0, 0.3);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1rem auto;
+    }
+    
+    .feature-icon {
+      font-size: 1.5rem;
+      color: white;
+    }
+    
+    .feature-title {
+      font-weight: 600;
+      font-size: 1.25rem;
+      margin-bottom: 0.5rem;
+      color: white;
+    }
+    
+    .feature-description {
+      color: rgba(255, 255, 255, 0.8);
+      flex-grow: 1;
+    }
+    
+    a {
+      text-decoration: none;
+      color: inherit;
+      display: block;
+      height: 100%;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="profile-section">
+      <div class="profile-kern">
+        <!-- Ganti URL di bawah ini dengan URL foto Anda -->
+        <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a" alt="Profile" class="profile-image">
+      </div>
+    </div>
+    
+    <h1>Sportsbook Tools Pro</h1>
+    <p>Panduan dan alat bantu Anda untuk taruhan sportsbook yang lebih cerdas</p>
+    
+    <div class="feature-grid">
+      <a href="cashout.html">
+        <div class="feature-btn">
+          <div class="icon-container">
+            <span class="feature-icon">$</span>
+          </div>
+          <h3 class="feature-title">Cara Hitungan Cashout</h3>
+          <p class="feature-description">Hitung nilai cashout optimal untuk taruhan Anda</p>
+        </div>
+      </a>
+      
+      <a href="parlay.html">
+        <div class="feature-btn">
+          <div class="icon-container">
+            <span class="feature-icon">⋮</span>
+          </div>
+          <h3 class="feature-title">Kalkulator Parlay</h3>
+          <p class="feature-description">Gabungkan beberapa taruhan dan lihat potensi keuntungan</p>
+        </div>
+      </a>
+      
+      <a href="panduan-sportsbook.html">
+        <div class="feature-btn">
+          <div class="icon-container">
+            <span class="feature-icon">📖</span>
+          </div>
+          <h3 class="feature-title">Panduan Sportsbook</h3>
+          <p class="feature-description">Pelajari cara bermain dan strategi taruhan sportsbook</p>
+        </div>
+      </a>
+    </div>
+  </div>
+</body>
+</html>
