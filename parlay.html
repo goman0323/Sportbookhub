@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kalkulator Parlay</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      background-color: #f7f7f7;
+    }
+    .container {
+      background: white;
+      max-width: 700px;
+      margin: auto;
+      padding: 30px;
+      border-radius: 16px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.1);
+    }
+    input, select, button {
+      padding: 10px;
+      margin: 10px 0;
+      width: 100%;
+      font-size: 16px;
+    }
+    button {
+      background-color: #28a745;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #218838;
+    }
+    .result {
+      margin-top: 20px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Kalkulator Parlay</h2>
+    <label>Modal Taruhan:</label>
+    <input type="number" id="stake" placeholder="Contoh: 100000">
+
+    <div id="bets"></div>
+
+    <button onclick="addLeg()">+ Tambah Leg</button>
+    <button onclick="hitungParlay()">Hitung Parlay</button>
+
+    <div class="result" id="result"></div>
+  </div>
+
+  <script>
+    let legCount = 0;
+
+    function addLeg() {
+      const container = document.getElementById("bets");
+      const div = document.createElement("div");
+      div.innerHTML = `
+        <label>Leg ${legCount + 1}:</label>
+        <input type="number" step="0.01" placeholder="Odds" id="odds${legCount}">
+        <select id="result${legCount}">
+          <option value="win">Menang</option>
+          <option value="half win">Menang Setengah</option>
+          <option value="void">Void</option>
+          <option value="half lose">Kalah Setengah</option>
+          <option value="lose">Kalah</option>
+        </select>
+      `;
+      container.appendChild(div);
+      legCount++;
+    }
+
+    function convertResult(result, odds) {
+      if (result === "win") return odds;
+      if (result === "half win") return (1 + odds) / 2;
+      if (result === "void") return 1;
+      if (result === "half lose") return 0.5;
+      if (result === "lose") return 0;
+      return 1;
+    }
+
+    function hitungParlay() {
+      const stake = parseFloat(document.getElementById("stake").value);
+      if (!stake || stake <= 0) {
+        document.getElementById("result").innerText = "Masukkan modal yang valid.";
+        return;
+      }
+
+      let total = 1;
+      for (let i = 0; i < legCount; i++) {
+        const odds = parseFloat(document.getElementById(`odds${i}`).value);
+        const result = document.getElementById(`result${i}`).value;
+        if (!odds || odds <= 0) {
+          document.getElementById("result").innerText = `Masukkan odds yang valid di leg ${i+1}`;
+          return;
+        }
+        total *= convertResult(result, odds);
+      }
+
+      const payout = stake * total;
+      const profit = payout - stake;
+
+      document.getElementById("result").innerText = `
+        Total Odds Parlay: ${total.toFixed(4)}\n
+        Total Kemenangan: Rp ${payout.toFixed(2)}\n
+        Profit Bersih: Rp ${profit.toFixed(2)}
+      `;
+    }
+  </script>
+</body>
+</html>
